@@ -1,16 +1,32 @@
 import React from 'react';
-import { StyleSheet, View} from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import DeckList from "./src/components/DeckList";
+import { createBottomTabNavigator, createAppContainer } from 'react-navigation';
 
-export default function App() {
-  return (
-
-    <View style={styles.container}>
-      <View style={styles.empty}></View>
-      <DeckList></DeckList>
-    </View>
-  );
+class DeckListScreen extends React.Component {
+  render() {
+    return (
+      <View style={styles.container}>
+        <DeckList></DeckList>
+      </View>
+    );
+  }
 }
+
+class AddDeckScreen extends React.Component {
+  render() {
+    return (
+      <View style={styles.container}>
+        <Text>Add Deck</Text>
+      </View>
+    );
+  }
+}
+
+const TabNavigator = createBottomTabNavigator({
+  Decks: DeckListScreen,
+  'Add': AddDeckScreen,
+});
 
 const styles = StyleSheet.create({
   container: {
@@ -23,3 +39,5 @@ const styles = StyleSheet.create({
     height: 50
   }
 });
+
+export default createAppContainer(TabNavigator);
