@@ -23,6 +23,9 @@ export default class AddDeckScreen extends React.Component {
   submitNewDeck() {
     // TODO submit to AsyncStorage
 
+    this.setState({
+      newDeckTitle: ''
+    });
     this.props.navigation.navigate('Decks');
   }
 
@@ -32,6 +35,7 @@ export default class AddDeckScreen extends React.Component {
         <Text>What is the title of your new deck?</Text>
         <Input
           onChangeText={this.onInputChanged}
+          value={this.state ? this.state.newDeckTitle : ''}
         />
         <Button
           buttonStyle={styles.submitButton}

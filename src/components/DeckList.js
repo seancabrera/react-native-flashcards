@@ -4,8 +4,14 @@ import { ListItem } from 'react-native-elements';
 import { Platform, StatusBar} from 'react-native';
 
 export default class DeckList extends React.Component {
+  static navigationOptions = {
+    title: 'Decks'
+  };
+
   constructor(props) {
     super(props);
+
+    this.onPress = this.onPress.bind(this);
 
     this.test = [
     {
@@ -31,12 +37,10 @@ export default class DeckList extends React.Component {
       ]
     }
     ]
-
-
   }
 
   onPress() {
-    console.log('press');
+    this.props.navigation.navigate('DeckDetails');
   }
 
   render() {
