@@ -1,6 +1,6 @@
 import React from 'react';
-import { StyleSheet, View} from 'react-native';
-import {ListItem} from "react-native-elements";
+import { StyleSheet, View } from 'react-native';
+import { ListItem } from "react-native-elements";
 
 export default class DeckList extends React.Component {
   constructor(props) {
@@ -41,24 +41,23 @@ export default class DeckList extends React.Component {
   render() {
     const cards = this.test.map((card, i) => (
       <ListItem
-      containerStyle={{ borderBottomColor: 'black' }}
-      style={styles.listItem}
-      key={i}
-      title={card.title}
-      titleNumberOfLines={1}
-      badge={{value: card.questions.length}}
-      rightIcon={{name: 'chevron-right'}}
-      onPress={this.onPress}
-      bottomDivider={true}
+        containerStyle={{ borderBottomColor: 'black' }}
+        style={styles.listItem}
+        key={i}
+        title={card.title}
+        titleNumberOfLines={1}
+        badge={{value: card.questions.length}}
+        rightIcon={{name: 'chevron-right'}}
+        onPress={this.onPress}
+        bottomDivider={true}
       />
-
-      ));
+    ));
 
     return (
       <View style={styles.container}>
-      {cards}
+        {cards}
       </View>
-      );
+    );
   }
 }
 
