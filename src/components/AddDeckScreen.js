@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { ListItem } from 'react-native-elements';
+import { Platform, StatusBar} from 'react-native';
 
 export default class AddDeckScreen extends React.Component {
   render() {
@@ -14,6 +15,7 @@ export default class AddDeckScreen extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
+    paddingTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight,
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
