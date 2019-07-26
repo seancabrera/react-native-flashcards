@@ -1,13 +1,17 @@
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { createStackNavigator, createAppContainer } from 'react-navigation';
+import HomeScreen from "./src/components/HomeScreen";
+import AddCardScreen from "./src/components/AddCardScreen";
 import AddDeckScreen from "./src/components/AddDeckScreen";
-import DeckList from "./src/components/DeckList";
-import DeckListNavigation from "./src/components/DeckListNavigation";
-import { createBottomTabNavigator, createAppContainer } from 'react-navigation';
+import DeckDetails from "./src/components/DeckDetails";
 
-const TabNavigator = createBottomTabNavigator({
-  Decks: DeckListNavigation,
-  'Add Deck': AddDeckScreen,
+
+const StackNavigator = createStackNavigator({
+  HomeScreen: HomeScreen,
+  DeckDetails: DeckDetails,
+  AddCardScreen: AddCardScreen,
+  AddDeckScreen: AddDeckScreen
+
 });
 
-export default createAppContainer(TabNavigator);
+export default createAppContainer(StackNavigator);

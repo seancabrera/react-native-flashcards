@@ -4,9 +4,6 @@ import { ListItem } from 'react-native-elements';
 import { Platform, StatusBar} from 'react-native';
 
 export default class DeckList extends React.Component {
-  static navigationOptions = {
-    title: 'Decks'
-  };
 
   constructor(props) {
     super(props);
@@ -68,7 +65,6 @@ export default class DeckList extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight,
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
