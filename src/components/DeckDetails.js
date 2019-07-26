@@ -9,33 +9,83 @@ export default class DeckDetails extends React.Component {
     super(props);
 
     this.addNewCard = this.addNewCard.bind(this);
+    this.startQuiz = this.startQuiz.bind(this);
+    this.deleteDeck = this.deleteDeck.bind(this);
   }
 
   addNewCard() {
     this.props.navigation.navigate('AddCardScreen');
   }
 
+  startQuiz() {
+  }
+
+  deleteDeck() {
+  }
+
   render() {
     return (
-      <View style={styles.container}>
-        <Button
-          title="Add Card"
-          onPress={this.addNewCard}
-        />
-      </View>
+        <View style={styles.container}>
+          <View style={styles.deckInfoContainer}>
+            <Text style={styles.deckName}>Deck Name</Text>
+          </View>
+          <View style={styles.actionButtonContainer}>
+            <Button
+              buttonStyle={styles.buttonStyle}
+              title="Add Card"
+              onPress={this.addNewCard}
+            />
+            <Button
+              buttonStyle={styles.buttonStyle}
+              title="Start Quiz"
+              onPress={this.startQuiz}
+            />
+          </View>
+          <View style={styles.deleteButtonContainer}>
+            <Button
+                buttonStyle={styles.deleteButtonStyle}
+                title="Delete Deck"
+                onPress={this.deleteDeck}
+            />
+          </View>
+        </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight,
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center'
   },
-  submitButton: {
-    marginTop: 50
+  deckInfoContainer: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  deckName: {
+    fontSize: 48
+  },
+  actionButtonContainer: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'flex-start'
+  },
+  deleteButtonContainer: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'flex-end'
+  },
+  buttonStyle: {
+    marginTop: 10
+  },
+  deleteButtonStyle: {
+    marginBottom: 25,
+    backgroundColor: 'red'
   }
 });
