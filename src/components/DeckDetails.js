@@ -7,12 +7,21 @@ export default class DeckDetails extends React.Component {
 
   constructor(props) {
     super(props);
+
+    this.addNewCard = this.addNewCard.bind(this);
+  }
+
+  addNewCard() {
+    this.props.navigation.navigate('AddCardScreen');
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <Text>Deck Details</Text>
+        <Button
+          title="Add Card"
+          onPress={this.addNewCard}
+        />
       </View>
     );
   }
