@@ -5,6 +5,7 @@ import { NavigationEvents } from 'react-navigation';
 import * as DataAPI from './DataAPI';
 import QuizCard from './QuizCard';
 import QuizResults from './QuizResults';
+import * as NotificationsAPI from './NotificationsAPI';
 
 export default class QuizView extends React.Component {
 
@@ -24,6 +25,9 @@ export default class QuizView extends React.Component {
   }
 
   componentDidMount() {
+    // The user is studying.. clear the notification
+    NotificationsAPI.clearLocalNotification();
+
     this.fetchDeckDetails();
   }
 

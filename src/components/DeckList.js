@@ -4,6 +4,7 @@ import { ListItem } from 'react-native-elements';
 import { Platform, StatusBar} from 'react-native';
 import { NavigationEvents } from 'react-navigation';
 import * as DataAPI from './DataAPI';
+import * as NotificationsAPI from './NotificationsAPI';
 
 export default class DeckList extends React.Component {
 
@@ -21,6 +22,8 @@ export default class DeckList extends React.Component {
   }
 
   componentDidMount() {
+    NotificationsAPI.setLocalNotification();
+
     this.fetchDecks();
   }
 
