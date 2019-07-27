@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, FlatList } from 'react-native';
 import { ListItem } from 'react-native-elements';
 import { Platform, StatusBar} from 'react-native';
 import { NavigationEvents } from 'react-navigation';
@@ -12,6 +12,8 @@ export default class DeckList extends React.Component {
 
     this.fetchDecks = this.fetchDecks.bind(this);
     this.onSelectDeck = this.onSelectDeck.bind(this);
+    this.keyExtractor = this.keyExtractor.bind(this);
+    this.renderListItem = this.renderListItem.bind(this);
 
     this.state = {
       decks: []
@@ -47,28 +49,40 @@ export default class DeckList extends React.Component {
     this.props.navigation.navigate('DeckDetails');
   }
 
-  render() {
-    const decks = this.state.decks.map((deck, i) => (
+  keyExtractor(item, index) {
+    return index.toString()
+  }
+
+  renderListItem({ item }) {
+    return (
       <ListItem
         containerStyle={{ borderBottomColor: 'black' }}
         style={styles.listItem}
-        key={i}
-        title={deck.title}
+        key={item.title}
+        title={item.title}
         titleNumberOfLines={1}
-        badge={{value: deck.questions.length}}
+        badge={{value: item.questions.length}}
         rightIcon={{name: 'chevron-right'}}
         onPress={this.onSelectDeck}
         bottomDivider={true}
       />
-    ));
+    );
+  }
 
+
+  render() {
     return (
       <View style={styles.container}>
         <NavigationEvents
           onWillFocus={this.fetchDecks}
         />
 
-        {decks}
+        <FlatList
+          style={styles.flatList}
+          keyExtractor={this.keyExtractor}
+          data={this.state.decks}
+          renderItem={this.renderListItem}
+        />
 
         {this.state.noDecks &&
           <Text style={styles.noDecksText}>
@@ -86,6 +100,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'flex-start',
+    width: '100%'
+  },
+  flatList: {
     width: '100%'
   },
   listItem: {
