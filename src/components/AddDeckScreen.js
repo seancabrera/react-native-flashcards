@@ -41,7 +41,7 @@ export default class AddDeckScreen extends React.Component {
         />
         <Button
           buttonStyle={styles.submitButton}
-          title="Submit"
+          title="Create Deck"
           onPress={this.submitNewDeck}
         />
       </View>
@@ -58,6 +58,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   submitButton: {
-    marginTop: 50
+    marginTop: 50,
+    width: 200
   }
 });

@@ -44,6 +44,9 @@ export default class DeckDetails extends React.Component {
   }
 
   startQuiz() {
+    this.props.navigation.navigate('QuizView', {
+      deckTitle: this.props.navigation.getParam('deckTitle')
+    });
   }
 
   deleteDeck() {
@@ -125,10 +128,12 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end'
   },
   buttonStyle: {
-    marginTop: 10
+    marginTop: 10,
+    width: 200
   },
   deleteButtonStyle: {
     marginBottom: 25,
+    width: 200,
     backgroundColor: 'red'
   }
 });
