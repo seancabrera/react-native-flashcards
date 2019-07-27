@@ -7,9 +7,9 @@ import * as DataAPI from './DataAPI';
 export default class AddDeckScreen extends React.Component {
   constructor(props) {
     super(props);
-    this.setState({
+    this.state ={
       newDeckTitle: ''
-    });
+    };
 
     this.onInputChanged = this.onInputChanged.bind(this);
     this.submitNewDeck = this.submitNewDeck.bind(this);
