@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { Input, Button } from 'react-native-elements';
 import { Platform, StatusBar } from 'react-native';
+import * as DataAPI from './DataAPI';
 
 export default class AddCardScreen extends React.Component {
   constructor(props) {
@@ -30,7 +31,18 @@ export default class AddCardScreen extends React.Component {
   }
 
   submitNewCard() {
-    this.props.navigation.goBack();
+    const deckTitle = this.props.navigation.getParam('deckTitle');
+    const card = {
+      question: this.state.question,
+      answer: this.state.answer
+    };
+
+    DataAPI.addCardToDeck({
+      deckTitle,
+      card
+    }).then(() => {
+      this.props.navigation.goBack();
+    });
   }
 
   render() {

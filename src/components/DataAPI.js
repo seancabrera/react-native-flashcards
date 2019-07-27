@@ -34,7 +34,7 @@ The data model looks like the following:
 
 export function getDecks() {
   return AsyncStorage.getItem(STORAGE_KEY)
-    .then(results => JSON.parse(results));
+    .then(results => results ? JSON.parse(results) : {});
 }
 
 export function getDeck(title) {
@@ -54,7 +54,7 @@ export function saveDeckTitle(title) {
   }));
 }
 
-export function addCardToDeck(deckTitle, card) {
+export function addCardToDeck({deckTitle, card}) {
   return AsyncStorage.getItem(STORAGE_KEY)
     .then(results => {
       const decks = JSON.parse(results);

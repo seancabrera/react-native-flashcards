@@ -45,8 +45,10 @@ export default class DeckList extends React.Component {
       });
   }
 
-  onSelectDeck() {
-    this.props.navigation.navigate('DeckDetails');
+  onSelectDeck(deckTitle) {
+    this.props.navigation.navigate('DeckDetails', {
+      deckTitle
+    });
   }
 
   keyExtractor(item, index) {
@@ -62,12 +64,11 @@ export default class DeckList extends React.Component {
         titleNumberOfLines={1}
         badge={{value: item.questions.length}}
         rightIcon={{name: 'chevron-right'}}
-        onPress={this.onSelectDeck}
+        onPress={() => this.onSelectDeck(item.title)}
         bottomDivider={true}
       />
     );
   }
-
 
   render() {
     return (
@@ -76,18 +77,18 @@ export default class DeckList extends React.Component {
           onWillFocus={this.fetchDecks}
         />
 
+        {this.state.noDecks &&
+          <Text style={styles.noDecksText}>
+              No decks have been added.
+          </Text>
+        }
+
         <FlatList
           style={styles.flatList}
           keyExtractor={this.keyExtractor}
           data={this.state.decks}
           renderItem={this.renderListItem}
         />
-
-        {this.state.noDecks &&
-          <Text style={styles.noDecksText}>
-              No decks have been added.
-          </Text>
-        }
       </View>
     );
   }
