@@ -1,7 +1,5 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
-import { Input, Button } from 'react-native-elements';
-import { NavigationEvents } from 'react-navigation';
 import * as DataAPI from './DataAPI';
 import QuizCard from './QuizCard';
 import QuizResults from './QuizResults';

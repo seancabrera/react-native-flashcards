@@ -1,7 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { Input, Button } from 'react-native-elements';
-import { Platform, StatusBar } from 'react-native';
 import * as DataAPI from './DataAPI';
 
 export default class AddCardScreen extends React.Component {
@@ -73,7 +72,7 @@ export default class AddCardScreen extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight,
+    paddingTop: 25,
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',

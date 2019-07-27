@@ -1,7 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Text, FlatList } from 'react-native';
 import { ListItem } from 'react-native-elements';
-import { Platform, StatusBar} from 'react-native';
 import { NavigationEvents } from 'react-navigation';
 import * as DataAPI from './DataAPI';
 import * as NotificationsAPI from './NotificationsAPI';

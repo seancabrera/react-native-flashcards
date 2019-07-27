@@ -1,7 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { Input, Button } from 'react-native-elements';
-import { Platform, StatusBar } from 'react-native';
 import * as DataAPI from './DataAPI';
 
 export default class AddDeckScreen extends React.Component {
@@ -51,7 +50,6 @@ export default class AddDeckScreen extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight,
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
