@@ -56,7 +56,6 @@ export default class DeckList extends React.Component {
   renderListItem({ item }) {
     return (
       <ListItem
-        containerStyle={{ borderBottomColor: 'black' }}
         style={styles.listItem}
         key={item.title}
         title={item.title}
