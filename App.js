@@ -11,7 +11,6 @@ const StackNavigator = createStackNavigator({
   DeckDetails: DeckDetails,
   AddCardScreen: AddCardScreen,
   AddDeckScreen: AddDeckScreen
-
 });
 
 export default createAppContainer(StackNavigator);

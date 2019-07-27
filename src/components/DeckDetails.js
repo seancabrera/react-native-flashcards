@@ -47,6 +47,9 @@ export default class DeckDetails extends React.Component {
   }
 
   deleteDeck() {
+    const deckTitle = this.props.navigation.getParam('deckTitle');
+    DataAPI.deleteDeck(deckTitle)
+      .then(() => this.props.navigation.goBack());
   }
 
   render() {
