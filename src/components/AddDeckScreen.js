@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { Input, Button } from 'react-native-elements';
 import { Platform, StatusBar } from 'react-native';
+import * as DataAPI from './DataAPI';
 
 export default class AddDeckScreen extends React.Component {
   constructor(props) {
@@ -21,12 +22,13 @@ export default class AddDeckScreen extends React.Component {
   }
 
   submitNewDeck() {
-    // TODO submit to AsyncStorage
-
-    this.setState({
-      newDeckTitle: ''
-    });
-    this.props.navigation.navigate('Decks');
+    DataAPI.saveDeckTitle(this.state.newDeckTitle)
+      .then(() => {
+        this.setState({
+          newDeckTitle: ''
+        });
+        this.props.navigation.navigate('Decks');
+      });
   }
 
   render() {

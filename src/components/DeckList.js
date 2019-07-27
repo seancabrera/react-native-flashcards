@@ -1,63 +1,80 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import { ListItem } from 'react-native-elements';
 import { Platform, StatusBar} from 'react-native';
+import { NavigationEvents } from 'react-navigation';
+import * as DataAPI from './DataAPI';
 
 export default class DeckList extends React.Component {
 
   constructor(props) {
     super(props);
 
-    this.onPress = this.onPress.bind(this);
+    this.fetchDecks = this.fetchDecks.bind(this);
+    this.onSelectDeck = this.onSelectDeck.bind(this);
 
-    this.test = [
-    {
-      title: 'React',
-      questions: [
-      {
-        question: 'What is React?',
-        answer: 'A library for managing user interfaces'
-      },
-      {
-        question: 'Where do you make Ajax requests in React?',
-        answer: 'The componentDidMount lifecycle event'
-      }
-      ]
-    },
-    {
-      title: 'JavaScript',
-      questions: [
-      {
-        question: 'What is a closure?',
-        answer: 'The combination of a function and the lexical environment within which that function was declared.'
-      }
-      ]
-    }
-    ]
+    this.state = {
+      decks: []
+    };
   }
 
-  onPress() {
+  componentDidMount() {
+    this.fetchDecks();
+  }
+
+  fetchDecks() {
+    DataAPI.getDecks()
+      .then(decksObject => {
+        const decksArray = [];
+        Object.keys(decksObject).forEach(deckId => {
+          decksArray.push(decksObject[deckId]);
+        });
+
+        this.setState({
+          decks: decksArray,
+          noDecks: false
+        });
+
+        if(decksArray.length === 0) {
+          this.setState({
+            noDecks: true
+          });
+        }
+      });
+  }
+
+  onSelectDeck() {
     this.props.navigation.navigate('DeckDetails');
   }
 
   render() {
-    const cards = this.test.map((card, i) => (
+    const decks = this.state.decks.map((deck, i) => (
       <ListItem
         containerStyle={{ borderBottomColor: 'black' }}
         style={styles.listItem}
         key={i}
-        title={card.title}
+        title={deck.title}
         titleNumberOfLines={1}
-        badge={{value: card.questions.length}}
+        badge={{value: deck.questions.length}}
         rightIcon={{name: 'chevron-right'}}
-        onPress={this.onPress}
+        onPress={this.onSelectDeck}
         bottomDivider={true}
       />
     ));
 
     return (
       <View style={styles.container}>
-        {cards}
+        <NavigationEvents
+          onWillFocus={this.fetchDecks}
+        />
+
+        {decks}
+
+        {this.state.noDecks &&
+          <Text style={styles.noDecksText}>
+              No decks have been added.
+          </Text>
+        }
       </View>
     );
   }
@@ -75,5 +92,8 @@ const styles = StyleSheet.create({
     width: '100%',
     borderBottomColor: 'black',
     borderBottomStartRadius: 1
+  },
+  noDecksText: {
+    marginTop: 25
   }
 });
