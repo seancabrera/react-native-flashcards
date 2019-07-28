@@ -23,10 +23,15 @@ export default class AddDeckScreen extends React.Component {
   submitNewDeck() {
     DataAPI.saveDeckTitle(this.state.newDeckTitle)
       .then(() => {
+        const newDeckTitle = this.state.newDeckTitle;
+
         this.setState({
           newDeckTitle: ''
         });
-        this.props.navigation.navigate('Decks');
+
+        this.props.navigation.navigate('DeckDetails', {
+          deckTitle: newDeckTitle
+        });
       });
   }
 
