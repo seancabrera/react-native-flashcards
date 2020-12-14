@@ -1,6 +1,7 @@
 import AddDeckScreen from "./AddDeckScreen";
 import DeckList from "./DeckList";
-import { createBottomTabNavigator, createAppContainer } from 'react-navigation';
+import { createAppContainer } from 'react-navigation';
+import { createBottomTabNavigator } from 'react-navigation-tabs';
 
 const TabNavigator = createBottomTabNavigator({
     Decks: DeckList,
