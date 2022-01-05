@@ -1,6 +1,6 @@
 import { AsyncStorage } from 'react-native';
-import { Notifications } from 'expo';
-import { Permissions } from 'expo-permissions';
+import * as Notifications from 'expo-notifications';
+import * as Permissions from 'expo-permissions';
 
 const NOTIFICATION_KEY = 'Cabrera:flashcards:notifications';
 
@@ -46,7 +46,7 @@ export function setLocalNotification () {
               tomorrow.setMinutes(0);
               tomorrow.setSeconds(0);
 
-              Notifications.scheduleLocalNotificationAsync(
+              Notifications.scheduleNotificationAsync(
                 createNotification(),
                 {
                   time: tomorrow,
