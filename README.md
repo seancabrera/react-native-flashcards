@@ -21,6 +21,6 @@ Then, in a terminal, navigate to the downloaded repository and run the following
 
 `npm install`
 
-`npm start`
+`expo start -c`
 
 This will bring up the Expo client in the browser. From there, you can either run the app in a simulator or on an Android device using the QR Code.
